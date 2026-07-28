@@ -12,8 +12,8 @@
 
 | Design Pattern | Relevant Classes | UML Diagram |
 |---|---|---|
-| **Singleton** | `catalog.LibraryCatalog` | [Singleton_UML.md](docs/uml/Singleton_UML.md) |
-| **Factory Method** | `model.Item`, `model.Book`, `model.DVD`, `factory.ItemFactory`, `factory.BookFactory`, `factory.DVDFactory` | [Factory_UML.md](docs/uml/Factory_UML.md) |
+| **Singleton** | `catalog.LibraryCatalog` | [Singleton_UML.md](docs/uml/singleton/Singleton_UML.md) |
+| **Factory Method** | `model.Item`, `model.Book`, `model.DVD`, `factory.ItemFactory`, `factory.BookFactory`, `factory.DVDFactory` | [Factory_UML.md](docs/uml/factory/Factory_UML.md) |
 
 - **Singleton** — `LibraryCatalog` was refactored so its constructor is private and
   the only way to obtain it is through `LibraryCatalog.getInstance()`. This
@@ -32,12 +32,12 @@
 
 | Design Pattern | Relevant Classes | UML Diagram |
 |---|---|---|
-| **Builder** | `builder.BookBuilder`, `builder.DVDBuilder` | [Builder_UML.md](docs/uml/Builder_UML.md) |
-| **Command** | `command.Command`, `command.CheckoutCommand`, `command.ReturnCommand` | [Command_UML.md](docs/uml/Command_UML.md) |
-| **Observer** | `observer.*` | [Observer_UML.md](docs/uml/Observer_UML.md) |
-| **Strategy** | `strategy.*` | [Strategy_UML.md](docs/uml/Strategy_UML.md) |
-| **Catalog** | `catalog.LibraryCatalog` | [Catalog_UML.md](docs/uml/Catalog_UML.md) |
-| **Menu System** | `ui.MenuSystem` | [MenuSystem_UML.md](docs/uml/MenuSystem_UML.md) |
+| **Builder** | `builder.BookBuilder`, `builder.DVDBuilder` | [Builder_UML.md](docs/uml/builder/Builder_UML.md) |
+| **Command** | `command.Command`, `command.CheckoutCommand`, `command.ReturnCommand` | [Command_UML.md](docs/uml/command/Command_UML.md) |
+| **Observer** | `observer.*` | [Observer_UML.md](docs/uml/observer/Observer_UML.md) |
+| **Strategy** | `strategy.*` | [Strategy_UML.md](docs/uml/strategy/Strategy_UML.md) |
+| **Catalog** | `catalog.LibraryCatalog` | [Catalog_UML.md](docs/uml/catalog/Catalog_UML.md) |
+| **Menu System** | `ui.MenuSystem` | [MenuSystem_UML.md](docs/uml/ui/MenuSystem_UML.md) |
 
 - **Builder** — Used to construct `Book` and `DVD` objects with optional fields
   (genre, publication year, etc.). This avoids telescoping constructors and
