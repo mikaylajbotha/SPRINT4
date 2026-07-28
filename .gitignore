@@ -1,0 +1,32 @@
+# Build output
+out/
+bin/
+target/
+
+# Compiled Java classes
+*.class
+
+# VS Code settings
+.vscode/*
+!.vscode/settings.json
+
+# Java language server cache
+.jdtls/
+
+# IntelliJ / Eclipse project files (safe to ignore even if you don’t use them)
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# OS junk files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
