@@ -34,6 +34,10 @@
 |---|---|---|
 | **Builder** | `builder.BookBuilder`, `builder.DVDBuilder` | [Builder_UML.md](docs/uml/Builder_UML.md) |
 | **Command** | `command.Command`, `command.CheckoutCommand`, `command.ReturnCommand` | [Command_UML.md](docs/uml/Command_UML.md) |
+| **Observer** | `observer.*` | [Observer_UML.md](docs/uml/Observer_UML.md) |
+| **Strategy** | `strategy.*` | [Strategy_UML.md](docs/uml/Strategy_UML.md) |
+| **Catalog** | `catalog.LibraryCatalog` | [Catalog_UML.md](docs/uml/Catalog_UML.md) |
+| **Menu System** | `ui.MenuSystem` | [MenuSystem_UML.md](docs/uml/MenuSystem_UML.md) |
 
 - **Builder** — Used to construct `Book` and `DVD` objects with optional fields
   (genre, publication year, etc.). This avoids telescoping constructors and
