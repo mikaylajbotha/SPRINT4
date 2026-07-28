@@ -3,7 +3,9 @@ package command;
 import model.Item;
 import model.Patron;
 
-// Command that checks out an item and records it against a patron
+/**
+ * Command that checks out an item and records it against a patron.
+ */
 public class CheckoutCommand implements Command {
 
     // The item being checked out
@@ -21,7 +23,8 @@ public class CheckoutCommand implements Command {
     public void execute() {
         if (!item.isAvailable()) {
             throw new IllegalStateException(
-                "Cannot check out \"" + item.getTitle() + "\" — it is not available.");
+                "Cannot check out \"" + item.getTitle() + "\" — it is not available."
+            );
         }
         item.setAvailable(false);
         patron.addCheckedOutItem(item);

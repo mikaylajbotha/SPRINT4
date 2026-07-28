@@ -2,6 +2,10 @@ package builder;
 
 import model.DVD;
 
+/**
+ * Builder Pattern: constructs a DVD step by step through chained calls.
+ * Useful for keeping construction logic out of the DVD class itself.
+ */
 public class DVDBuilder {
 
     private String title;
@@ -25,7 +29,9 @@ public class DVDBuilder {
 
     public DVD build() {
         if (title == null || director == null || catalogNumber == null) {
-            throw new IllegalStateException("title, director, and catalogNumber are required to build a DVD");
+            throw new IllegalStateException(
+                "title, director, and catalogNumber are required to build a DVD"
+            );
         }
         return new DVD(title, director, catalogNumber);
     }

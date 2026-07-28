@@ -1,7 +1,9 @@
 package model;
 
-// Shared contract for anything the catalog can hold and check out/return
-// Book, DVD, Magazine, etc. ItemFactory subclasses return this type.
+/**
+ * Shared contract for anything the catalog can hold and check out/return.
+ * Book, DVD, Magazine, etc. ItemFactory subclasses return this type.
+ */
 public interface Item {
 
     // Unique identifier (ISBN for books, catalog # for DVDs, etc.)
@@ -9,6 +11,9 @@ public interface Item {
 
     // Item's display title
     String getTitle();
+
+    // Creator (author for books, director for DVDs)
+    String getCreator();
 
     // True if the item can currently be checked out
     boolean isAvailable();

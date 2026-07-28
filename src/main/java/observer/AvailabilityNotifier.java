@@ -4,8 +4,6 @@ import model.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-// Subject in the Observer pattern: tracks observers and notifies them
-// when an item becomes available again.
 public class AvailabilityNotifier {
 
     private List<PatronObserver> observers = new ArrayList<>();

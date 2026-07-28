@@ -3,7 +3,9 @@ package command;
 import model.Item;
 import model.Patron;
 
-// Command that returns a checked-out item and updates the patron's record
+/**
+ * Command that returns a checked-out item and updates the patron's record.
+ */
 public class ReturnCommand implements Command {
 
     // The item being returned
@@ -22,7 +24,8 @@ public class ReturnCommand implements Command {
     public void execute() {
         if (item.isAvailable()) {
             throw new IllegalStateException(
-                "Cannot return \"" + item.getTitle() + "\" — it was not checked out.");
+                "Cannot return \"" + item.getTitle() + "\" — it was not checked out."
+            );
         }
         item.setAvailable(true);
         patron.removeCheckedOutItem(item);

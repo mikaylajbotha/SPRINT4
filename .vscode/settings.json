@@ -3,7 +3,8 @@
     "lib/**/*.jar"
   ],
   "java.project.sourcePaths": [
-    "src/main/java"
+    "src/main/java",
+    "src/test/java"
   ],
   "java.project.testPaths": [
     "src/test/java"

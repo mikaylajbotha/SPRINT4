@@ -2,8 +2,10 @@ package model;
 
 // A DVD item that can live in the library catalog
 public class DVD implements Item {
+
     // DVD's display title
     private String title;
+
     // DVD's director
     private String director;
 
@@ -23,24 +25,42 @@ public class DVD implements Item {
 
     // Returns the DVD's title
     @Override
-    public String getTitle() { return title; }
+    public String getTitle() {
+        return title;
+    }
 
     // Returns the director's name
-    public String getDirector() { return director; }
+    public String getDirector() {
+        return director;
+    }
+
+    // Required by Item interface — creator = director
+    @Override
+    public String getCreator() {
+        return director;
+    }
 
     // Returns the DVD's catalog number as its unique id
     @Override
-    public String getId() { return catalogNumber; }
+    public String getId() {
+        return catalogNumber;
+    }
 
     // Checks if the DVD is available
     @Override
-    public boolean isAvailable() { return available; }
+    public boolean isAvailable() {
+        return available;
+    }
 
     // Updates availability status
     @Override
-    public void setAvailable(boolean available) { this.available = available; }
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     // Identifies this item's type for the UI
     @Override
-    public String getType() { return "DVD"; }
+    public String getType() {
+        return "DVD";
+    }
 }

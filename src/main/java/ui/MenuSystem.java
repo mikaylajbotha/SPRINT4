@@ -28,8 +28,7 @@ public class MenuSystem {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    // Seeds the catalog with sample items via factories (Factory Method),
-    // so BookFactory/DVDFactory decide what concrete class gets built
+    // Seeds the catalog with sample items via factories (Factory Method)
     private void seedCatalog() {
         ItemFactory bookFactory = new BookFactory();
         ItemFactory dvdFactory = new DVDFactory();
@@ -67,7 +66,7 @@ public class MenuSystem {
         System.out.println("Goodbye!");
     }
 
-    // Handles checkout: finds the item, gets/creates the patron, runs CheckoutCommand
+    // Handles checkout
     private void checkoutItem() {
         Item item = promptForItem();
         if (item == null) return;
@@ -83,7 +82,7 @@ public class MenuSystem {
         }
     }
 
-    // Handles return: finds the item, gets/creates the patron, runs ReturnCommand
+    // Handles return
     private void returnItem() {
         Item item = promptForItem();
         if (item == null) return;
@@ -99,7 +98,7 @@ public class MenuSystem {
         }
     }
 
-    // Prompts for an item id and looks it up in the catalog
+    // Prompts for an item id and looks it up
     private Item promptForItem() {
         System.out.print("Enter item id: ");
         String id = scanner.nextLine();
@@ -114,7 +113,7 @@ public class MenuSystem {
         return null;
     }
 
-    // Prompts for a patron id, reusing an existing Patron or creating a new one
+    // Prompts for a patron id
     private Patron promptForPatron() {
         System.out.print("Enter patron id: ");
         String id = scanner.nextLine();
@@ -130,7 +129,7 @@ public class MenuSystem {
         return patron;
     }
 
-    // Adds a new Book or DVD to the catalog using the Builder pattern
+    // Adds a new Book or DVD using the Builder pattern
     private void addItem() {
         System.out.print("Add (1) Book or (2) DVD? ");
         String choice = scanner.nextLine();
@@ -148,7 +147,6 @@ public class MenuSystem {
             String yearInput = scanner.nextLine();
             int year = yearInput.isBlank() ? 0 : Integer.parseInt(yearInput);
 
-            // FIXED: Correct BookBuilder usage
             BookBuilder builder = new BookBuilder()
                     .title(title)
                     .author(author)
@@ -185,7 +183,7 @@ public class MenuSystem {
         }
     }
 
-    // Prints every item currently in the shared catalog with its status
+    // Prints every item currently in the shared catalog
     private void printCatalog() {
         List<Item> items = catalog.getItems();
         System.out.println("\n--- Catalog (" + items.size() + " items) ---");
@@ -194,5 +192,10 @@ public class MenuSystem {
             System.out.println("[" + item.getType() + "] " + item.getTitle()
                     + " (id: " + item.getId() + ") - " + status);
         }
+    }
+
+    
+    public static void main(String[] args) {
+        new MenuSystem().start();
     }
 }

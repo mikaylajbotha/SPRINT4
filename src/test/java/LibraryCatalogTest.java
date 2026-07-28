@@ -29,8 +29,7 @@ public class LibraryCatalogTest {
         assertSame(first, second);
     }
 
-    // State added through one reference should be visible through another,
-    // proving both references point to the same shared catalog
+    // State added through one reference should be visible through another
     @Test
     public void testSingletonSharesStateAcrossReferences() {
         LibraryCatalog first = LibraryCatalog.getInstance();

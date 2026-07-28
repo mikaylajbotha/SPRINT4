@@ -2,10 +2,12 @@ package builder;
 
 import model.Book;
 
-// Builder Pattern: constructs a Book step by step through chained calls,
-// so optional fields (genre, publicationYear) don't need a giant
-// constructor with every possible combination of parameters.
+/**
+ * Builder Pattern: constructs a Book step by step through chained calls,
+ * so optional fields (genre, publicationYear) don't require a huge constructor.
+ */
 public class BookBuilder {
+
     private String title;
     private String author;
     private String isbn;
@@ -45,7 +47,9 @@ public class BookBuilder {
     // Builds the final Book once all desired fields have been set
     public Book build() {
         if (title == null || author == null || isbn == null) {
-            throw new IllegalStateException("title, author, and isbn are required to build a Book");
+            throw new IllegalStateException(
+                "title, author, and isbn are required to build a Book"
+            );
         }
         return new Book(title, author, isbn, genre, publicationYear);
     }

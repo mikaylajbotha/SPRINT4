@@ -2,8 +2,10 @@ package model;
 
 // A Book item that can live in the library catalog
 public class Book implements Item {
+
     // Book's display title
     private String title;
+
     // Book's author
     private String author;
 
@@ -32,35 +34,57 @@ public class Book implements Item {
         this.available = true;
     }
 
-     // Returns the book's title
+    // Returns the book's title
     @Override
-    public String getTitle() { return title; }
+    public String getTitle() { 
+        return title; 
+    }
 
-     // Returns the author's name
-    public String getAuthor() { return author; }
+    // Returns the author's name
+    public String getAuthor() { 
+        return author; 
+    }
+
+    // Required by Item interface — creator = author
+    @Override
+    public String getCreator() {
+        return author;
+    }
 
     // Returns the book's ISBN as its unique id
     @Override
-    public String getId() { return isbn; }
+    public String getId() { 
+        return isbn; 
+    }
 
-    // Kept for backward compatibility with existing code/tests calling getIsbn()
-    public String getIsbn() { return isbn; }
+    // Backward compatibility
+    public String getIsbn() { 
+        return isbn; 
+    }
 
-    // Returns the book's genre, or null if not set
-    public String getGenre() { return genre; }
+    // Optional fields
+    public String getGenre() { 
+        return genre; 
+    }
 
-    // Returns the book's publication year, or 0 if not set
-    public int getPublicationYear() { return publicationYear; }
+    public int getPublicationYear() { 
+        return publicationYear; 
+    }
 
-    // Checks if the book is available
+    // Availability
     @Override
-    public boolean isAvailable() { return available; }
+    public boolean isAvailable() { 
+        return available; 
+    }
 
-    // Updates availability status
     @Override
-    public void setAvailable(boolean available) { this.available = available; }
+    public void setAvailable(boolean available) { 
+        this.available = available; 
+    }
 
     // Identifies this item's type for the UI
     @Override
-    public String getType() { return "Book"; }
+    public String getType() { 
+        return "Book"; 
+    }
 }

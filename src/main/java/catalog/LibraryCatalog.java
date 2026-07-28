@@ -4,23 +4,24 @@ import model.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-// Singleton Pattern: only one LibraryCatalog should exist for the whole
-// application, since it represents the single shared collection of items.
-// Constructor is private; every caller gets the same instance via getInstance().
+/**
+ * Singleton Pattern: only one LibraryCatalog exists for the whole application.
+ * It stores all items (Books, DVDs, etc.) and provides lookup and retrieval.
+ */
 public class LibraryCatalog {
 
     // The one shared instance
     private static LibraryCatalog instance;
 
-    // All items currently in the catalog (Books, DVDs, etc.)
-    private List<Item> items;
+    // All items currently in the catalog
+    private final List<Item> items;
 
-    // Private so no other class can create a second catalog
+    // Private constructor prevents external instantiation
     private LibraryCatalog() {
         this.items = new ArrayList<>();
     }
 
-    // Lazily creates the instance on first call, then always returns that same one
+    // Lazily creates the instance on first call, then always returns the same one
     public static LibraryCatalog getInstance() {
         if (instance == null) {
             instance = new LibraryCatalog();

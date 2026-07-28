@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Patron {
+
     // Patron's display name
     private String name;
 
@@ -21,13 +22,19 @@ public class Patron {
     }
 
     // Returns patron's name
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     // Returns patron's ID
-    public String getId() { return id; }
+    public String getId() {
+        return id;
+    }
 
     // Returns the patron's currently checked-out items
-    public List<Item> getCheckedOutItems() { return checkedOutItems; }
+    public List<Item> getCheckedOutItems() {
+        return checkedOutItems;
+    }
 
     // Adds an item to this patron's checked-out list
     public void addCheckedOutItem(Item item) {
