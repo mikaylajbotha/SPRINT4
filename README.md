@@ -114,11 +114,12 @@ All UML diagrams for these patterns are included in the **root folder**, as requ
 - UML diagrams for all patterns  
 - CLI program with working menu  
 - README updated for all sprints  
-- Patterns integrated into real functionality  
+- Patterns integrated into real functionality
+- (SE450 only) JUnit tests with 70% coverage  
 
 ### ❗ Still Required (Final Submission)
 - Final video demo (5–10 minutes)
-- (SE450 only) JUnit tests with 70% coverage
+
 
 ---
 
