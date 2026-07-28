@@ -12,8 +12,8 @@
 
 | Design Pattern | Relevant Classes | UML Diagram |
 |---|---|---|
-| **Singleton** | `catalog.LibraryCatalog` | [Singleton_UML.md](Singleton_UML.md) |
-| **Factory Method** | `model.Item`, `model.Book`, `model.DVD`, `factory.ItemFactory`, `factory.BookFactory`, `factory.DVDFactory` | [FactoryMethod_UML.md](FactoryMethod_UML.md) |
+| **Singleton** | `catalog.LibraryCatalog` | [Singleton_UML.md](docs/uml/Singleton_UML.md) |
+| **Factory Method** | `model.Item`, `model.Book`, `model.DVD`, `factory.ItemFactory`, `factory.BookFactory`, `factory.DVDFactory` | [Factory_UML.md](docs/uml/Factory_UML.md) |
 
 - **Singleton** — `LibraryCatalog` was refactored so its constructor is private and
   the only way to obtain it is through `LibraryCatalog.getInstance()`. This
@@ -32,8 +32,8 @@
 
 | Design Pattern | Relevant Classes | UML Diagram |
 |---|---|---|
-| **Builder** | `builder.BookBuilder`, `builder.DVDBuilder` | [Builder_UML.md](Builder_UML.md) |
-| **Command** | `command.Command`, `command.CheckoutCommand`, `command.ReturnCommand` | [Command_UML.md](Command_UML.md) |
+| **Builder** | `builder.BookBuilder`, `builder.DVDBuilder` | [Builder_UML.md](docs/uml/Builder_UML.md) |
+| **Command** | `command.Command`, `command.CheckoutCommand`, `command.ReturnCommand` | [Command_UML.md](docs/uml/Command_UML.md) |
 
 - **Builder** — Used to construct `Book` and `DVD` objects with optional fields
   (genre, publication year, etc.). This avoids telescoping constructors and
