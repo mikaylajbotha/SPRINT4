@@ -1,79 +1,161 @@
-# SE350Project
+# SE350Project — Library Checkout System (CLI-Based)
+
+This project is a command-line Library Checkout System designed to demonstrate object‑oriented design, modular architecture, and the implementation of **six custom design patterns** as required for the SE350 Final Submission.
+
+---
 
 ## Sprint 2
 
 - **Project chosen:** Library Checkout System (CLI-based)
 - **Planned Design Patterns:** Singleton, Factory Method, Builder, Observer, Strategy, Command
 - **Libraries used:** JUnit 5 (junit-platform-console-standalone)
+- **Repository:** https://github.com/mikaylajbotha/SPRINT4
+
+---
 
 ## Sprint 3
 
-### Design Patterns Implemented
+### Design Patterns Implemented (Sprint 3)
 
 | Design Pattern | Relevant Classes | UML Diagram |
 |---|---|---|
-| **Singleton** | `catalog.LibraryCatalog` | [Singleton_UML.md](docs/uml/singleton/Singleton_UML.md) |
-| **Factory Method** | `model.Item`, `model.Book`, `model.DVD`, `factory.ItemFactory`, `factory.BookFactory`, `factory.DVDFactory` | [Factory_UML.md](docs/uml/factory/Factory_UML.md) |
+| **Singleton** | `catalog.LibraryCatalog` | [Singleton_UML.md](Singleton_UML.md) |
+| **Factory Method** | `model.Item`, `model.Book`, `model.DVD`, `factory.ItemFactory`, `factory.BookFactory`, `factory.DVDFactory` | [Factory_UML.md](Factory_UML.md) |
 
-- **Singleton** — `LibraryCatalog` was refactored so its constructor is private and
-  the only way to obtain it is through `LibraryCatalog.getInstance()`. This
-  guarantees the whole application shares one catalog of items rather than each
-  class holding its own separate list.
+#### Summary
 
-- **Factory Method** — Introduced an `Item` interface implemented by `Book` and a
-  new `DVD` class, plus an abstract `ItemFactory` with concrete `BookFactory` and
-  `DVDFactory` subclasses. `MenuSystem` now creates catalog items through these
-  factories instead of calling `new Book(...)` directly, so new item types can be
-  added later without touching existing client code.
+- **Singleton** — `LibraryCatalog` now enforces a single shared catalog instance using a private constructor and `getInstance()`.
+- **Factory Method** — Introduced `Item` interface, `Book` and `DVD` implementations, and abstract/concrete factories to allow extensible item creation.
+
+---
 
 ## Sprint 4
 
-### Additional Design Patterns Implemented
+### Additional Design Patterns Implemented (Sprint 4)
 
 | Design Pattern | Relevant Classes | UML Diagram |
 |---|---|---|
-| **Builder** | `builder.BookBuilder`, `builder.DVDBuilder` | [Builder_UML.md](docs/uml/builder/Builder_UML.md) |
-| **Command** | `command.Command`, `command.CheckoutCommand`, `command.ReturnCommand` | [Command_UML.md](docs/uml/command/Command_UML.md) |
-| **Observer** | `observer.*` | [Observer_UML.md](docs/uml/observer/Observer_UML.md) |
-| **Strategy** | `strategy.*` | [Strategy_UML.md](docs/uml/strategy/Strategy_UML.md) |
-| **Catalog** | `catalog.LibraryCatalog` | [Catalog_UML.md](docs/uml/catalog/Catalog_UML.md) |
-| **Menu System** | `ui.MenuSystem` | [MenuSystem_UML.md](docs/uml/ui/MenuSystem_UML.md) |
+| **Builder** | `builder.BookBuilder`, `builder.DVDBuilder` | [Builder_UML.md](Builder_UML.md) |
+| **Command** | `command.Command`, `command.CheckoutCommand`, `command.ReturnCommand` | [Command_UML.md](Command_UML.md) |
+| **Observer** | `observer.Observer`, `observer.Subject`, `observer.PatronObserver` | [Observer_UML.md](Observer_UML.md) |
+| **Strategy** | `strategy.SearchStrategy`, `strategy.SearchByTitle`, `strategy.SearchByCreator`, `strategy.SearchById` | [Strategy_UML.md](Strategy_UML.md) |
+| **Catalog** | `catalog.LibraryCatalog` | [Catalog_UML.md](Catalog_UML.md) |
+| **Menu System** | `ui.MenuSystem` | [MenuSystem_UML.md](MenuSystem_UML.md) |
 
-- **Builder** — Used to construct `Book` and `DVD` objects with optional fields
-  (genre, publication year, etc.). This avoids telescoping constructors and
-  allows flexible item creation.
+#### Summary
 
-- **Command** — `CheckoutCommand` and `ReturnCommand` encapsulate checkout and
-  return actions. This allows future extensions such as undo, logging, or
-  batching commands.
+- **Builder** — Allows flexible construction of `Book` and `DVD` objects with optional fields.
+- **Command** — Encapsulates checkout/return actions for future undo/logging features.
+- **Observer** — Patrons can subscribe to notifications when checked-out items become available.
+- **Strategy** — Multiple search strategies (title, creator, ID) allow flexible catalog queries.
 
-### What I want to show for the Final Submission
+---
 
-A command-line Library Checkout System where a user can browse a shared catalog
-of items (books and DVDs), check items out, and return them. By the final
-submission I plan to have all 6 planned patterns working together: Singleton
-(shared catalog), Factory Method (item creation), Builder (constructing complex
-`Book`/`DVD` objects with optional fields), Observer (notifying patrons when a
-previously checked-out item becomes available again), Strategy (different search
-strategies for the catalog, e.g. by title vs. by author), and Command
-(encapsulating checkout/return actions so they can be logged or undone). This
-scope may narrow depending on time, but the core checkout/return/search flow is
-the priority.
+## Final Submission Goal
 
-### Problems / Blockers
+By the final submission, the project will demonstrate:
 
-- The `Item` interface required refactoring `Book` and `LibraryCatalog`, which had
-  already been written against a concrete `Book` type in Sprint 2. This was a small,
-  contained refactor, but it's a reminder to design interfaces before implementing
-  further patterns (e.g. Builder) so more rework isn't needed later.
+- A working CLI Library Checkout System
+- A shared catalog (Singleton)
+- Flexible item creation (Factory Method)
+- Configurable item construction (Builder)
+- Encapsulated checkout/return actions (Command)
+- Patron notifications when items become available (Observer)
+- Multiple search strategies for catalog lookup (Strategy)
 
-- `Patron.java` had an incorrect package declaration (`main.model` instead of
-  `model`) left over from an earlier IDE reorganization; fixed to match the rest of
-  the project's package structure.
+The final demo will show:
 
-- PowerShell required compiling all Java files in a single `javac` invocation.
-  Compiling files individually caused “package does not exist” errors because
-  dependencies were not visible.
+- Browsing catalog items  
+- Checking out items  
+- Returning items  
+- Observer notifications  
+- Searching using different strategies  
+- A clean, modular architecture using **six custom design patterns**
 
-- Observer and Strategy patterns are planned but not yet implemented — no blockers
-  currently identified for implementing them in the final Sprint.
+---
+
+## Problems / Blockers
+
+### Sprint 3 Blockers
+- Refactoring required after introducing `Item` interface.
+- Incorrect package declaration in `Patron.java` caused compilation issues.
+- PowerShell required compiling all Java files at once due to dependency visibility.
+
+### Sprint 4 Blockers
+- Observer pattern required modifying `LibraryCatalog` to support subscriptions.
+- Strategy pattern required restructuring search logic to avoid duplication.
+- UML diagrams needed reorganizing to meet rubric requirements (must be in root folder).
+- README links needed correction after folder restructuring.
+
+---
+
+## Design Patterns Implemented (All Sprints)
+
+1. **Singleton** — Shared catalog instance  
+2. **Factory Method** — Extensible item creation  
+3. **Builder** — Flexible object construction  
+4. **Command** — Encapsulated checkout/return actions  
+5. **Observer** — Patron notifications  
+6. **Strategy** — Multiple search strategies  
+
+All UML diagrams for these patterns are included in the **root folder**, as required.
+
+---
+
+## Project Structure
+
+SPRINT4/
+│
+├── src/
+│   ├── catalog/
+│   ├── factory/
+│   ├── builder/
+│   ├── command/
+│   ├── observer/
+│   ├── strategy/
+│   ├── ui/
+│   └── model/
+│
+├── lib/
+├── tests/
+│
+├── Singleton_UML.md
+├── Factory_UML.md
+├── Builder_UML.md
+├── Command_UML.md
+├── Observer_UML.md
+├── Strategy_UML.md
+├── Catalog_UML.md
+├── MenuSystem_UML.md
+└── README.md
+
+
+---
+
+## Final Submission Requirements Checklist
+
+### ✔ Completed
+- 6 custom design patterns  
+- UML diagrams for all patterns  
+- CLI program with working menu  
+- README updated for all sprints  
+- Patterns integrated into real functionality  
+
+### ❗ Still Required (Final Submission)
+- Final video demo (5–10 minutes)
+- (SE450 only) JUnit tests with 70% coverage
+
+---
+
+## Bugs / Known Issues
+
+- Some search strategies may return multiple matches; future improvement: ranking results.
+- Observer notifications currently print to console; future improvement: queue or log notifications.
+- Undo functionality for Command pattern not yet implemented.
+
+---
+
+## Notes
+
+This project demonstrates modular design, extensibility, and maintainability through the use of six design patterns. The final submission will include a video walkthrough and any remaining refinements.
+
