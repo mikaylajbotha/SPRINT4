@@ -17,6 +17,8 @@ classDiagram
     }
 
     class LibraryCatalog {
+        -static LibraryCatalog instance
+        -List~Item~ items
         +getInstance() LibraryCatalog
         +addItem(Item) void
         +findById(String) Item
@@ -24,7 +26,16 @@ classDiagram
     }
 
     class ItemFactory {
-        +createItem(String type, String title, String creator, String id) Item
+        <<interface>>
+        +createItem(String title, String creator, String id) Item
+    }
+
+    class BookFactory {
+        +createItem(String title, String author, String isbn) Item
+    }
+
+    class DVDFactory {
+        +createItem(String title, String director, String catalogNumber) Item
     }
 
     class CheckoutCommand {
@@ -44,6 +55,8 @@ classDiagram
     }
 
     class Patron {
+        -String name
+        -String id
         +Patron(String name, String id)
         +addCheckedOutItem(Item) void
         +removeCheckedOutItem(Item) void
@@ -52,16 +65,20 @@ classDiagram
 
     class Item {
         <<interface>>
+        +getId() String
         +isAvailable() boolean
         +setAvailable(boolean) void
-        +getId() String
     }
 
     MenuSystem --> LibraryCatalog : uses (singleton)
-    MenuSystem --> ItemFactory : creates items
+    MenuSystem --> BookFactory : creates books
+    MenuSystem --> DVDFactory : creates DVDs
+
     MenuSystem --> CheckoutCommand : invokes
     MenuSystem --> ReturnCommand : invokes
+
     CheckoutCommand --> Item : modifies
     CheckoutCommand --> Patron : modifies
+
     ReturnCommand --> Item : modifies
     ReturnCommand --> Patron : modifies

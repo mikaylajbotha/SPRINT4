@@ -1,8 +1,8 @@
 # Strategy Pattern — UML Diagram
 
 Used so `MenuSystem` can choose different search behaviors at runtime
-(title search, author search, ID search, type search, etc.) without
-changing `LibraryCatalog` or duplicating search logic.
+(title search, creator search, ID search, etc.) without modifying
+`LibraryCatalog` or duplicating search logic.
 
 ```mermaid
 classDiagram
@@ -15,7 +15,7 @@ classDiagram
         +search(List~Item~, String) List~Item~
     }
 
-    class SearchByAuthor {
+    class SearchByCreator {
         +search(List~Item~, String) List~Item~
     }
 
@@ -23,14 +23,10 @@ classDiagram
         +search(List~Item~, String) List~Item~
     }
 
-    class SearchByType {
-        +search(List~Item~, String) List~Item~
-    }
-
     class LibraryCatalog {
         -List~Item~ items
         +getItems() List~Item~
-        +find(SearchStrategy, String) List~Item~
+        +search(SearchStrategy, String) List~Item~
     }
 
     class MenuSystem {
@@ -38,9 +34,8 @@ classDiagram
     }
 
     SearchStrategy <|.. SearchByTitle
-    SearchStrategy <|.. SearchByAuthor
+    SearchStrategy <|.. SearchByCreator
     SearchStrategy <|.. SearchById
-    SearchStrategy <|.. SearchByType
 
     MenuSystem --> SearchStrategy : selects
     LibraryCatalog --> SearchStrategy : executes

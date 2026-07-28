@@ -4,21 +4,37 @@ import model.Item;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Subject in the Observer Pattern.
+ *
+ * AvailabilityNotifier maintains a list of observers (PatronObserver)
+ * and notifies them whenever an item becomes available again.
+ *
+ * LibraryCatalog.returnItem() should call notifyAvailable(item)
+ * after marking the item available.
+ */
 public class AvailabilityNotifier {
 
-    private List<PatronObserver> observers = new ArrayList<>();
+    // All observers subscribed for availability notifications
+    private final List<PatronObserver> observers = new ArrayList<>();
 
-    // Allows a patron (observer) to subscribe for notifications
+    /**
+     * Registers a new observer (e.g., a PatronObserver).
+     */
     public void addObserver(PatronObserver observer) {
         observers.add(observer);
     }
 
-    // Allows a patron to unsubscribe
+    /**
+     * Removes an observer.
+     */
     public void removeObserver(PatronObserver observer) {
         observers.remove(observer);
     }
 
-    // Notifies all subscribed patrons that an item is now available
+    /**
+     * Notifies all observers that an item is now available.
+     */
     public void notifyAvailable(Item item) {
         for (PatronObserver observer : observers) {
             observer.update(item);

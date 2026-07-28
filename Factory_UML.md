@@ -1,8 +1,9 @@
 # Factory Method Pattern — UML Diagram
 
-Applies the Factory Method pattern to item creation so `MenuSystem` and
-`LibraryCatalog` can construct `Item` objects (`Book`, `DVD`, …) without
-knowing which concrete class is being instantiated.
+The Factory Method pattern allows `MenuSystem` and `LibraryCatalog` to create
+`Item` objects (`Book`, `DVD`, …) without knowing which concrete class is being
+instantiated. Each concrete factory encapsulates the creation logic for a
+specific item type.
 
 ```mermaid
 classDiagram
@@ -44,7 +45,7 @@ classDiagram
     }
 
     class ItemFactory {
-        <<abstract>>
+        <<interface>>
         +createItem(String title, String creator, String id) Item
     }
 
@@ -59,8 +60,8 @@ classDiagram
     Item <|.. Book
     Item <|.. DVD
 
-    ItemFactory <|-- BookFactory
-    ItemFactory <|-- DVDFactory
+    ItemFactory <|.. BookFactory
+    ItemFactory <|.. DVDFactory
 
     BookFactory ..> Book : creates
     DVDFactory ..> DVD : creates

@@ -2,9 +2,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import builder.BookBuilder;
 import model.Book;
 
 public class BookTest {
+
+    // -------------------------------------------------------------------------
+    // Constructor Tests
+    // -------------------------------------------------------------------------
 
     @Test
     public void testBookCreation() {
@@ -52,5 +58,49 @@ public class BookTest {
 
         book.setAvailable(true);
         assertTrue(book.isAvailable());
+    }
+
+    // -------------------------------------------------------------------------
+    // Builder Tests
+    // -------------------------------------------------------------------------
+
+    @Test
+    public void testBuilderCreatesRequiredFields() {
+        Book book = new BookBuilder()
+                .title("1984")
+                .author("George Orwell")
+                .isbn("ISBN-1984")
+                .build();
+
+        assertEquals("1984", book.getTitle());
+        assertEquals("George Orwell", book.getAuthor());
+        assertEquals("ISBN-1984", book.getId());
+        assertTrue(book.isAvailable());
+    }
+
+    @Test
+    public void testBuilderOptionalFields() {
+        Book book = new BookBuilder()
+                .title("Dune")
+                .author("Frank Herbert")
+                .isbn("12345")
+                .genre("Sci-Fi")
+                .publicationYear(1965)
+                .build();
+
+        assertEquals("Sci-Fi", book.getGenre());
+        assertEquals(1965, book.getPublicationYear());
+    }
+
+    @Test
+    public void testBuilderOptionalFieldsDefault() {
+        Book book = new BookBuilder()
+                .title("Dune")
+                .author("Frank Herbert")
+                .isbn("12345")
+                .build();
+
+        assertEquals(null, book.getGenre());
+        assertEquals(0, book.getPublicationYear());
     }
 }

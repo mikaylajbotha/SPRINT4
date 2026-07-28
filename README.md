@@ -1,6 +1,8 @@
 # SE350Project — Library Checkout System (CLI-Based)
 
-This project is a command-line Library Checkout System designed to demonstrate object‑oriented design, modular architecture, and the implementation of **six custom design patterns** as required for the SE350 Final Submission.
+This project is a command-line Library Checkout System designed to demonstrate
+object‑oriented design, modular architecture, and the implementation of **six
+custom design patterns** as required for the SE350 Final Submission.
 
 ---
 
@@ -25,7 +27,7 @@ This project is a command-line Library Checkout System designed to demonstrate o
 #### Summary
 
 - **Singleton** — `LibraryCatalog` now enforces a single shared catalog instance using a private constructor and `getInstance()`.
-- **Factory Method** — Introduced `Item` interface, `Book` and `DVD` implementations, and abstract/concrete factories to allow extensible item creation.
+- **Factory Method** — Introduced `Item` interface, `Book` and `DVD` implementations, and concrete factories to allow extensible item creation.
 
 ---
 
@@ -37,17 +39,19 @@ This project is a command-line Library Checkout System designed to demonstrate o
 |---|---|---|
 | **Builder** | `builder.BookBuilder`, `builder.DVDBuilder` | [Builder_UML.md](Builder_UML.md) |
 | **Command** | `command.Command`, `command.CheckoutCommand`, `command.ReturnCommand` | [Command_UML.md](Command_UML.md) |
-| **Observer** | `observer.Observer`, `observer.Subject`, `observer.PatronObserver` | [Observer_UML.md](Observer_UML.md) |
+| **Observer** | `observer.Observer`, `observer.PatronObserver`, `observer.AvailabilityNotifier` | [Observer_UML.md](Observer_UML.md) |
 | **Strategy** | `strategy.SearchStrategy`, `strategy.SearchByTitle`, `strategy.SearchByCreator`, `strategy.SearchById` | [Strategy_UML.md](Strategy_UML.md) |
 | **Catalog** | `catalog.LibraryCatalog` | [Catalog_UML.md](Catalog_UML.md) |
 | **Menu System** | `ui.MenuSystem` | [MenuSystem_UML.md](MenuSystem_UML.md) |
 
 #### Summary
 
-- **Builder** — Allows flexible construction of `Book` and `DVD` objects with optional fields.
-- **Command** — Encapsulates checkout/return actions for future undo/logging features.
+- **Builder** — Provides fluent construction of `Book` and `DVD` objects. `BookBuilder` supports optional fields; `DVDBuilder` supports required fields only.
+- **Command** — Encapsulates checkout/return actions, allowing future undo/logging extensions.
 - **Observer** — Patrons can subscribe to notifications when checked-out items become available.
 - **Strategy** — Multiple search strategies (title, creator, ID) allow flexible catalog queries.
+- **Catalog** — Centralized Singleton catalog storing all items.
+- **Menu System** — CLI interface coordinating factories, commands, and catalog operations.
 
 ---
 
@@ -82,10 +86,11 @@ The final demo will show:
 - PowerShell required compiling all Java files at once due to dependency visibility.
 
 ### Sprint 4 Blockers
-- Observer pattern required modifying `LibraryCatalog` to support subscriptions.
-- Strategy pattern required restructuring search logic to avoid duplication.
+- Observer pattern required adding `AvailabilityNotifier` and integrating observer registration.
+- Strategy pattern required restructuring search logic and adding missing strategy classes.
 - UML diagrams needed reorganizing to meet rubric requirements (must be in root folder).
 - README links needed correction after folder restructuring.
+- DVDBuilder required adjustments because the `DVD` class does not support optional fields.
 
 ---
 
@@ -93,7 +98,7 @@ The final demo will show:
 
 1. **Singleton** — Shared catalog instance  
 2. **Factory Method** — Extensible item creation  
-3. **Builder** — Flexible object construction  
+3. **Builder** — Fluent object construction  
 4. **Command** — Encapsulated checkout/return actions  
 5. **Observer** — Patron notifications  
 6. **Strategy** — Multiple search strategies  
@@ -103,7 +108,6 @@ All UML diagrams for these patterns are included in the **root folder**, as requ
 ---
 
 ## Project Structure
-
 SPRINT4/
 │
 ├── src/
@@ -157,5 +161,6 @@ SPRINT4/
 
 ## Notes
 
-This project demonstrates modular design, extensibility, and maintainability through the use of six design patterns. The final submission will include a video walkthrough and any remaining refinements.
-
+This project demonstrates modular design, extensibility, and maintainability
+through the use of six design patterns. The final submission will include a
+video walkthrough and any remaining refinements.

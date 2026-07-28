@@ -1,64 +1,111 @@
 package model;
 
-// A DVD item that can live in the library catalog
+/**
+ * Represents a DVD item in the library catalog.
+ *
+ * Implements the Item interface so DVDs can be treated uniformly with
+ * other catalog items (Books, future media types, etc.).
+ *
+ * Supports optional fields (genre, releaseYear) via the DVDBuilder.
+ */
 public class DVD implements Item {
 
-    // DVD's display title
+    // Required fields
     private String title;
-
-    // DVD's director
     private String director;
-
-    // Unique catalog identifier for the DVD
     private String catalogNumber;
 
-    // Whether the DVD is currently available to check out
+    // Optional fields (set via DVDBuilder)
+    private String genre;
+    private int releaseYear;
+
+    // Availability status
     private boolean available;
 
-    // Creates a new DVD, available by default
+    /**
+     * Minimal constructor (required fields only).
+     * Optional fields default to null/0.
+     */
     public DVD(String title, String director, String catalogNumber) {
+        this(title, director, catalogNumber, null, 0);
+    }
+
+    /**
+     * Full constructor used by DVDBuilder.
+     */
+    public DVD(String title, String director, String catalogNumber,
+               String genre, int releaseYear) {
+
         this.title = title;
         this.director = director;
         this.catalogNumber = catalogNumber;
+        this.genre = genre;
+        this.releaseYear = releaseYear;
         this.available = true;
     }
 
-    // Returns the DVD's title
+    // -------------------------------------------------------------------------
+    // Item interface implementation
+    // -------------------------------------------------------------------------
+
     @Override
     public String getTitle() {
         return title;
     }
 
-    // Returns the director's name
+    /**
+     * Returns the DVD's director.
+     */
     public String getDirector() {
         return director;
     }
 
-    // Required by Item interface — creator = director
+    /**
+     * Required by Item interface — creator = director.
+     */
     @Override
     public String getCreator() {
         return director;
     }
 
-    // Returns the DVD's catalog number as its unique id
+    /**
+     * Returns the DVD's catalog number as its unique ID.
+     */
     @Override
     public String getId() {
         return catalogNumber;
     }
 
-    // Checks if the DVD is available
+    // -------------------------------------------------------------------------
+    // Optional fields
+    // -------------------------------------------------------------------------
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    // -------------------------------------------------------------------------
+    // Availability
+    // -------------------------------------------------------------------------
+
     @Override
     public boolean isAvailable() {
         return available;
     }
 
-    // Updates availability status
     @Override
     public void setAvailable(boolean available) {
         this.available = available;
     }
 
-    // Identifies this item's type for the UI
+    // -------------------------------------------------------------------------
+    // UI / Type identification
+    // -------------------------------------------------------------------------
+
     @Override
     public String getType() {
         return "DVD";

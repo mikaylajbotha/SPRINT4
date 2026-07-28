@@ -1,16 +1,19 @@
 package factory;
 
-import model.Book;
+import builder.BookBuilder;
 import model.Item;
 
 /**
- * Concrete Creator in the Factory Method pattern: builds Book items.
+ * Concrete Factory for creating Book items.
  */
-public class BookFactory extends ItemFactory {
+public class BookFactory implements ItemFactory {
 
-    // creator = author
     @Override
-    public Item createItem(String title, String creator, String id) {
-        return new Book(title, creator, id);
+    public Item createItem(String title, String author, String isbn) {
+        return new BookBuilder()
+                .title(title)
+                .author(author)
+                .isbn(isbn)
+                .build();
     }
 }

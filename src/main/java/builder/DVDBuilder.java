@@ -3,14 +3,17 @@ package builder;
 import model.DVD;
 
 /**
- * Builder Pattern: constructs a DVD step by step through chained calls.
- * Useful for keeping construction logic out of the DVD class itself.
+ * Builder Pattern: constructs DVD objects.
+ * Optional fields (genre, releaseYear) are currently ignored
+ * because DVD does not define setters for them.
  */
 public class DVDBuilder {
 
     private String title;
     private String director;
     private String catalogNumber;
+    private String genre;      // optional, not applied to DVD yet
+    private int releaseYear;   // optional, not applied to DVD yet
 
     public DVDBuilder withTitle(String title) {
         this.title = title;
@@ -27,12 +30,18 @@ public class DVDBuilder {
         return this;
     }
 
+    public DVDBuilder withGenre(String genre) {
+        this.genre = genre;
+        return this;
+    }
+
+    public DVDBuilder withReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+        return this;
+    }
+
     public DVD build() {
-        if (title == null || director == null || catalogNumber == null) {
-            throw new IllegalStateException(
-                "title, director, and catalogNumber are required to build a DVD"
-            );
-        }
+        // DVD currently only supports title, director, id/catalogNumber
         return new DVD(title, director, catalogNumber);
     }
 }

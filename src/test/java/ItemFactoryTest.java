@@ -14,6 +14,10 @@ import model.Item;
 
 public class ItemFactoryTest {
 
+    // -------------------------------------------------------------------------
+    // BOOK FACTORY TESTS
+    // -------------------------------------------------------------------------
+
     @Test
     public void testBookFactoryCreatesBook() {
         ItemFactory factory = new BookFactory();
@@ -28,6 +32,19 @@ public class ItemFactoryTest {
     }
 
     @Test
+    public void testBookFactoryOptionalFieldsDefault() {
+        ItemFactory factory = new BookFactory();
+        Book book = (Book) factory.createItem("Dune", "Frank Herbert", "12345");
+
+        assertEquals(null, book.getGenre());
+        assertEquals(0, book.getPublicationYear());
+    }
+
+    // -------------------------------------------------------------------------
+    // DVD FACTORY TESTS
+    // -------------------------------------------------------------------------
+
+    @Test
     public void testDVDFactoryCreatesDVD() {
         ItemFactory factory = new DVDFactory();
         Item item = factory.createItem("Inception", "Christopher Nolan", "DVD001");
@@ -38,5 +55,14 @@ public class ItemFactoryTest {
         assertEquals("DVD001", item.getId());
         assertEquals("DVD", item.getType());
         assertTrue(item.isAvailable());
+    }
+
+    @Test
+    public void testDVDFactoryOptionalFieldsDefault() {
+        ItemFactory factory = new DVDFactory();
+        DVD dvd = (DVD) factory.createItem("Arrival", "Denis Villeneuve", "DVD2002");
+
+        assertEquals(null, dvd.getGenre());
+        assertEquals(0, dvd.getReleaseYear());
     }
 }

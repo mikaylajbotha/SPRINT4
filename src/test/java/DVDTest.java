@@ -2,9 +2,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import builder.DVDBuilder;
 import model.DVD;
 
 public class DVDTest {
+
+    // -------------------------------------------------------------------------
+    // Constructor Tests
+    // -------------------------------------------------------------------------
 
     @Test
     public void testDVDCreation() {
@@ -42,5 +48,49 @@ public class DVDTest {
 
         dvd.setAvailable(true);
         assertTrue(dvd.isAvailable());
+    }
+
+    // -------------------------------------------------------------------------
+    // Builder Tests
+    // -------------------------------------------------------------------------
+
+    @Test
+    public void testBuilderCreatesRequiredFields() {
+        DVD dvd = new DVDBuilder()
+                .withTitle("Interstellar")
+                .withDirector("Christopher Nolan")
+                .withCatalogNumber("DVD999")
+                .build();
+
+        assertEquals("Interstellar", dvd.getTitle());
+        assertEquals("Christopher Nolan", dvd.getDirector());
+        assertEquals("DVD999", dvd.getId());
+        assertTrue(dvd.isAvailable());
+    }
+
+    @Test
+    public void testBuilderOptionalFields() {
+        DVD dvd = new DVDBuilder()
+                .withTitle("The Matrix")
+                .withDirector("Wachowski Sisters")
+                .withCatalogNumber("DVD777")
+                .withGenre("Sci-Fi")
+                .withReleaseYear(1999)
+                .build();
+
+        assertEquals("Sci-Fi", dvd.getGenre());
+        assertEquals(1999, dvd.getReleaseYear());
+    }
+
+    @Test
+    public void testBuilderOptionalFieldsDefault() {
+        DVD dvd = new DVDBuilder()
+                .withTitle("The Matrix")
+                .withDirector("Wachowski Sisters")
+                .withCatalogNumber("DVD777")
+                .build();
+
+        assertEquals(null, dvd.getGenre());
+        assertEquals(0, dvd.getReleaseYear());
     }
 }

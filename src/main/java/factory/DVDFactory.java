@@ -1,16 +1,19 @@
 package factory;
 
-import model.DVD;
+import builder.DVDBuilder;
 import model.Item;
 
 /**
- * Concrete Creator in the Factory Method pattern: builds DVD items.
+ * Concrete Factory for creating DVD items.
  */
-public class DVDFactory extends ItemFactory {
+public class DVDFactory implements ItemFactory {
 
-    // creator = director
     @Override
-    public Item createItem(String title, String creator, String id) {
-        return new DVD(title, creator, id);
+    public Item createItem(String title, String director, String catalogNumber) {
+        return new DVDBuilder()
+                .withTitle(title)
+                .withDirector(director)
+                .withCatalogNumber(catalogNumber)
+                .build();
     }
 }

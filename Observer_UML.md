@@ -1,7 +1,8 @@
 # Observer Pattern — UML Diagram
 
 Used so `Patron` objects can be notified automatically when an `Item` they are
-interested in becomes available again.
+interested in becomes available again. `AvailabilityNotifier` acts as the
+subject, while `PatronObserver` is the concrete observer that updates a patron.
 
 ```mermaid
 classDiagram
@@ -34,16 +35,17 @@ classDiagram
 
     class Item {
         <<interface>>
+        +getId() String
         +isAvailable() boolean
         +setAvailable(boolean) void
-        +getId() String
-        +getType() String
     }
 
     class Patron {
+        -String name
+        -String id
+        +getName() String
         +addCheckedOutItem(Item) void
         +removeCheckedOutItem(Item) void
-        +getName() String
     }
 
     Observer <|.. PatronObserver

@@ -3,6 +3,15 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a library patron who can check out and return items.
+ *
+ * Supports:
+ *  - Command Pattern (CheckoutCommand, ReturnCommand modify patron state)
+ *  - Observer Pattern (PatronObserver wraps Patron to receive notifications)
+ *
+ * Each patron maintains a list of checked-out items.
+ */
 public class Patron {
 
     // Patron's display name
@@ -14,34 +23,56 @@ public class Patron {
     // Items (books, DVDs, etc.) this patron currently has checked out
     private List<Item> checkedOutItems;
 
-    // Sets up a new patron with name, ID, and an empty checked-out list
+    /**
+     * Creates a new patron with a name and ID.
+     */
     public Patron(String name, String id) {
         this.name = name;
         this.id = id;
         this.checkedOutItems = new ArrayList<>();
     }
 
-    // Returns patron's name
+    // -------------------------------------------------------------------------
+    // Basic getters
+    // -------------------------------------------------------------------------
+
+    /**
+     * Returns the patron's name.
+     */
     public String getName() {
         return name;
     }
 
-    // Returns patron's ID
+    /**
+     * Returns the patron's unique ID.
+     */
     public String getId() {
         return id;
     }
 
-    // Returns the patron's currently checked-out items
+    /**
+     * Returns all items currently checked out by this patron.
+     */
     public List<Item> getCheckedOutItems() {
         return checkedOutItems;
     }
 
-    // Adds an item to this patron's checked-out list
+    // -------------------------------------------------------------------------
+    // Checkout / Return operations
+    // -------------------------------------------------------------------------
+
+    /**
+     * Adds an item to the patron's checked-out list.
+     * Called by CheckoutCommand.execute().
+     */
     public void addCheckedOutItem(Item item) {
         checkedOutItems.add(item);
     }
 
-    // Removes an item from this patron's checked-out list (used on return/undo)
+    /**
+     * Removes an item from the patron's checked-out list.
+     * Called by ReturnCommand.execute().
+     */
     public void removeCheckedOutItem(Item item) {
         checkedOutItems.remove(item);
     }

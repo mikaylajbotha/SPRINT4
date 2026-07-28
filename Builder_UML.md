@@ -1,9 +1,9 @@
 # Builder Pattern — UML Diagram
 
 Constructs `Book` and `DVD` objects through a fluent, step-by-step interface
-instead of large/overloaded constructors. Required and optional fields are set
-through fluent setter methods, keeping construction logic separate from the
-product classes themselves.
+instead of large/overloaded constructors. Required fields are set through
+fluent setter methods, keeping construction logic separate from the product
+classes themselves.
 
 ```mermaid
 classDiagram

@@ -1,26 +1,58 @@
 package model;
 
 /**
- * Shared contract for anything the catalog can hold and check out/return.
- * Book, DVD, Magazine, etc. ItemFactory subclasses return this type.
+ * Shared contract for anything the library catalog can store and manage.
+ *
+ * Implementations include:
+ *  - Book
+ *  - DVD
+ *  - Future media types (Magazine, Audiobook, etc.)
+ *
+ * This interface supports:
+ *  - Factory Method Pattern (ItemFactory returns Item)
+ *  - Strategy Pattern (search uses getCreator(), getTitle(), getId())
+ *  - Command Pattern (checkout/return uses isAvailable(), setAvailable())
+ *  - Observer Pattern (LibraryCatalog notifies observers when availability changes)
  */
 public interface Item {
 
-    // Unique identifier (ISBN for books, catalog # for DVDs, etc.)
+    /**
+     * Unique identifier for the item.
+     * Examples:
+     *  - Books: ISBN
+     *  - DVDs: Catalog number
+     */
     String getId();
 
-    // Item's display title
+    /**
+     * Human-readable display title.
+     */
     String getTitle();
 
-    // Creator (author for books, director for DVDs)
+    /**
+     * Creator of the item.
+     * Examples:
+     *  - Books: author
+     *  - DVDs: director
+     */
     String getCreator();
 
-    // True if the item can currently be checked out
+    /**
+     * True if the item is currently available for checkout.
+     */
     boolean isAvailable();
 
-    // Marks the item as checked out or returned
+    /**
+     * Updates the availability status.
+     * Used by checkout/return commands and observer notifications.
+     */
     void setAvailable(boolean available);
 
-    // Type label used by the UI (e.g. "Book", "DVD")
+    /**
+     * Type label used by the UI.
+     * Examples:
+     *  - "Book"
+     *  - "DVD"
+     */
     String getType();
 }

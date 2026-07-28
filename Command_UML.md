@@ -1,8 +1,9 @@
 # Command Pattern — UML Diagram
 
-Encapsulates checkout and return actions as command objects, so `MenuSystem`
-(the invoker) can execute them without knowing the details of how checkout or
-return work. Commands modify the state of `Item` and `Patron` (the receivers).
+Encapsulates checkout and return actions as command objects, allowing
+`MenuSystem` (the invoker) to trigger operations without knowing the internal
+logic of how items are checked out or returned. Commands modify the state of
+`Item` and `Patron` (the receivers).
 
 ```mermaid
 classDiagram
@@ -53,8 +54,11 @@ classDiagram
     Command <|.. CheckoutCommand
     Command <|.. ReturnCommand
 
-    MenuSystem --> Command : creates & invokes
+    MenuSystem --> CheckoutCommand : creates & invokes
+    MenuSystem --> ReturnCommand : creates & invokes
+
     CheckoutCommand --> Item : modifies
     CheckoutCommand --> Patron : modifies
+
     ReturnCommand --> Item : modifies
     ReturnCommand --> Patron : modifies
