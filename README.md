@@ -105,36 +105,7 @@ The final demo will show:
 
 All UML diagrams for these patterns are included in the **root folder**, as required.
 
----
 
-## Project Structure
-SPRINT4/
-│
-├── src/
-│   ├── catalog/
-│   ├── factory/
-│   ├── builder/
-│   ├── command/
-│   ├── observer/
-│   ├── strategy/
-│   ├── ui/
-│   └── model/
-│
-├── lib/
-├── tests/
-│
-├── Singleton_UML.md
-├── Factory_UML.md
-├── Builder_UML.md
-├── Command_UML.md
-├── Observer_UML.md
-├── Strategy_UML.md
-├── Catalog_UML.md
-├── MenuSystem_UML.md
-└── README.md
-
-
----
 
 ## Final Submission Requirements Checklist
 
